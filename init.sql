@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS clientes;
+CREATE UNLOGGED TABLE IF NOT EXISTS clientes(
+    id SERIAL PRIMARY KEY NOT NULL, 
+    saldo INTEGER NOT NULL,
+    limite INTEGER NOT NULL
+);
+
+CREATE UNLOGGED TABLE IF NOT EXISTS transactions(
+    id SERIAL PRIMARY KEY NOT NULL,
+    client_id INTEGER NOT NULL,
+    valor INTEGER NOT NULL,
+    tipo CHAR NOT NULL,
+    descricao VARCHAR(200) NULL,
+    realizada_em TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+DELETE FROM clientes WHERE 1 = 1;
+INSERT INTO clientes(id, limite, saldo) VALUES
+(1, 100000, 0),
+(2, 80000, 0),
+(3, 1000000, 0),
+(4, 10000000, 0),
+(5, 500000, 0);
